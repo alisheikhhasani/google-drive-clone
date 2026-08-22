@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
-new class extends Component
-{
+new class extends Component {
     public string $name = '';
     public string $email = '';
     public string $password = '';
@@ -22,13 +24,23 @@ new class extends Component
     {
         return $this->view()
             ->layout('layouts::auth')
-            ->title('ثبت نام گوگل درایو');
+            ->title(__('titles.register'));
     }
 
-    public function registerUser()
+    public function registerUser(): void
     {
         $this->validate();
+
+        $user = User::query()->create($this->only(['name', 'email', 'password']));
+
+        Auth::login($user);
+
+        Session::regenerate();
+        Session::regenerateToken();
+
+        $this->redirectIntended(navigate: true);
     }
+
 };
 ?>
 
@@ -56,7 +68,7 @@ new class extends Component
 
         <fieldset class="fieldset">
             <legend class="fieldset-legend">{{ __('validation.attributes.password') }}</legend>
-            <input type="text" class="input input-primary w-full" wire:model="password">
+            <input type="password" class="input input-primary w-full" wire:model="password">
             @error('password')
             <p class="label text-error">
                 {{ $message }}
@@ -66,7 +78,7 @@ new class extends Component
 
         <fieldset class="fieldset">
             <legend class="fieldset-legend">{{ __('validation.attributes.password_confirmation') }}</legend>
-            <input type="text" class="input input-primary w-full" wire:model="password_confirmation">
+            <input type="password" class="input input-primary w-full" wire:model="password_confirmation">
         </fieldset>
 
         <button class="btn btn-primary btn-block mt-6">

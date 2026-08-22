@@ -213,6 +213,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'نام کامل',
+        'email' => 'پست الکترونیکی',
+        'password' => 'گذرواژه',
+        'password_confirmation' => 'تایید گذرواژه'
+    ],
 
 ];
