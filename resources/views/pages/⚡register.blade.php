@@ -33,6 +33,8 @@ new class extends Component {
 
         $user = User::query()->create($this->only(['name', 'email', 'password']));
 
+        $user->folders()->create(['name' => $user->email]);
+
         Auth::login($user);
 
         Session::regenerate();
