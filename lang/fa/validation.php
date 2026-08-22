@@ -217,7 +217,8 @@ return [
         'name' => 'نام کامل',
         'email' => 'پست الکترونیکی',
         'password' => 'گذرواژه',
-        'password_confirmation' => 'تایید گذرواژه'
+        'password_confirmation' => 'تایید گذرواژه',
+        'remember' => 'به خاطر سپردن اطلاعات'
     ],
 
 ];

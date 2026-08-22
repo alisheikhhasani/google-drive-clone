@@ -86,4 +86,8 @@ new class extends Component {
             <span wire:loading.remove wire:target="registerUser">{{ __('forms.register.submit') }}</span>
         </button>
     </form>
+
+    <div class="w-full flex justify-center">
+        <a href="{{ route('login') }}" wire:navigate class="link link-hover link-info mt-4">{{ __('titles.login') }}</a>
+    </div>
 </div>
