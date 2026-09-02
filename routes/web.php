@@ -7,3 +7,6 @@ Route::middleware('guest')->group(function () {
     Route::livewire('/login', 'pages::login')->name('login');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::livewire('/{folder?}', 'pages::index')->name('index');
+});
